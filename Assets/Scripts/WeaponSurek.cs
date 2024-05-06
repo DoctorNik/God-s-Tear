@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class WeaponSurek : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
+    public Transform shotpos;
+    public GameObject Bullet;
+    
     void Start()
     {
         
     }
 
     // Update is called once per frame
-    void Update()
+    public void FireBullet()
     {
-        
+        Instantiate(Bullet, shotpos.transform.position, transform.rotation);
     }
 }

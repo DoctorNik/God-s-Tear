@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Hero : MonoBehaviour
 {
-    [SerializeField] private float attackRange = 0.5f;
     [SerializeField] public int lives = 100;
+
     public int attackDamage = 40;
     public float attackRate = 0.5f;
     private float nextAttackTime = 0f;
