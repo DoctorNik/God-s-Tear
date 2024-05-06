@@ -12,9 +12,8 @@ public class Hero : MonoBehaviour
     private float nextAttackTime = 0f;
     public LayerMask enemyLayers;
     public Transform attackPoint;
-
     private Rigidbody2D rb;
-
+    
     private void Attack()
     {
         if (Time.time < nextAttackTime)
