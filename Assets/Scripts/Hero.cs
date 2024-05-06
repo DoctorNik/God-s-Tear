@@ -6,29 +6,7 @@ using UnityEngine.SceneManagement;
 public class Hero : MonoBehaviour
 {
     [SerializeField] public int lives = 100;
-
-    public int attackDamage = 40;
-    public float attackRate = 0.5f;
-    private float nextAttackTime = 0f;
-    public LayerMask enemyLayers;
-    public Transform attackPoint;
-    private Rigidbody2D rb;
     
-    private void Attack()
-    {
-        if (Time.time < nextAttackTime)
-        {
-            return;
-        }
-        nextAttackTime = Time.time + 1f / attackRate;
-
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-
-        foreach (Collider2D enemy in enemies)
-        {
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
-        }
-    }
 }
 
 

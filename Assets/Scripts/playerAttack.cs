@@ -11,18 +11,19 @@ public class playerAttack : MonoBehaviour
     private float nextAttackTime = 0f;
     public LayerMask enemyLayers;
     public Transform attackPoint;
-    bool isMeleeMode;
+    private weaponSwitch switchValue;
     private Rigidbody2D rb;
     private WeaponSurek weaponSurek;
 
     private void Start()
         {
             weaponSurek = GetComponent<WeaponSurek>(); // Получаем ссылку на компонент WeaponSurek
+            switchValue = GetComponent<weaponSwitch>();
         }
         
-    private void Attack()
+    public void Attack()
     {
-        if (isMeleeMode)
+        if (switchValue.isMeleeMode)
         {
             if (Time.time < nextAttackTime)
             {

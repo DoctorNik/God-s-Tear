@@ -162,3 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  surekDamage: 10

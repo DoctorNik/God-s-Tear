@@ -6,18 +6,12 @@ public class Bullet : MonoBehaviour
 {
     public float speed;
     public LayerMask enemyLayers;
-    private int surekDamage = 4;
+    public int surekDamage;
     Rigidbody2D rb;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.right * speed;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
     
     private void OnTriggerEnter2D(Collider2D collision)
@@ -25,6 +19,7 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.layer == enemyLayers)
         {
             collision.GetComponent<Enemy>().TakeDamage(surekDamage);
+            Destroy(gameObject);
         }
     }
 }
