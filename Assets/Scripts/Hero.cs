@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Hero : MonoBehaviour
 {
     [SerializeField] private float attackRange = 0.5f;
-    [SerializeField] private int lives = 100;
+    [SerializeField] public int lives = 100;
     public int attackDamage = 40;
     public float attackRate = 0.5f;
     private float nextAttackTime = 0f;
@@ -28,16 +28,6 @@ public class Hero : MonoBehaviour
         foreach (Collider2D enemy in enemies)
         {
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
-        }
-    }
-
-    public void TakeDamage(int damageAmount)
-    {
-        lives -= damageAmount;
-        if (lives < 0)
-        Debug.Log("PLayer has taken " + damageAmount);
-        {
-             Debug.Log("Player has taken too much damage and DIE");
         }
     }
 }

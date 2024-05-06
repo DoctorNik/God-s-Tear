@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
-    public int HP = 100;
+    public int lives = 100;
     public float speed;
 
     public int positionOfPatrol;
@@ -25,11 +25,13 @@ public class Enemy : MonoBehaviour
     public float attackRate = 0.5f;
     private float nextAttackTime = 0f;
 
+    takeDamage scriptTakeDamage;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        scriptTakeDamage = GetComponent<takeDamage>();
     }
 
     // Update is called once per frame
@@ -113,22 +115,16 @@ public class Enemy : MonoBehaviour
 
     void AttackPlayer()
     {
-       
-        Hero playerHero = player.GetComponent<Hero>();
-
-        if (playerHero != null)
-        {
-            playerHero.TakeDamage(damage);
-        }
+        scriptTakeDamage.TakeDamage(damage);
     }
 
     public void TakeDamage(int damage)
     {
-        HP -= damage;
+        lives -= damage;
 
         // play hurt animation
 
-        if (HP <= 0)
+        if (lives <= 0)
             Die();
     }
 
