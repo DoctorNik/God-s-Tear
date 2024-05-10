@@ -10,21 +10,20 @@ public class Enemy : MonoBehaviour
 
     public int positionOfPatrol;
     public Transform point;
-    bool movingRight;
+    public bool movingRight;
 
-    Transform player;
+    [HideInInspector] public Transform player;
     public float stoppingDistance;
 
-    bool chill = false;
-    bool angry = false;
-    bool goBack = false;
+    public bool chill = false;
+    public bool angry = false;
+    public bool goBack = false;
 
     public float attackRange = 0.5f; 
 
     public int damage = 10; 
     public float attackRate = 0.5f;
     private float nextAttackTime = 0f;
-
     takeDamage scriptTakeDamage;
 
     // Start is called before the first frame update
@@ -37,7 +36,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(transform.position, point.position) < positionOfPatrol && angry == false)
+/*        if (Vector2.Distance(transform.position, point.position) < positionOfPatrol && angry == false)
         {
             chill = true;
         }
@@ -66,7 +65,7 @@ public class Enemy : MonoBehaviour
         else if (goBack == true)
         {
             GoBack();
-        }
+        } */
 
         if (Time.time >= nextAttackTime)
         {
@@ -78,7 +77,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Chill()
+    /*void Chill()
     {
         if (transform.position.x > point.position.x + positionOfPatrol)
         {
@@ -112,7 +111,7 @@ public class Enemy : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, point.position, speed * Time.deltaTime);
         speed = 3;
     }
-
+*/
     void AttackPlayer()
     {
         scriptTakeDamage.TakeDamage(damage);

@@ -1571,6 +1571,9 @@ GameObject:
   - component: {fileID: 626481158}
   - component: {fileID: 626481157}
   - component: {fileID: 626481156}
+  - component: {fileID: 626481162}
+  - component: {fileID: 626481161}
+  - component: {fileID: 626481160}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -1590,11 +1593,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82783c2d59a1b334a86ceccf3b3b6ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 10
+  lives: 100
   speed: 3
   positionOfPatrol: 2
   point: {fileID: 499361183}
+  movingRight: 0
+  player: {fileID: 0}
   stoppingDistance: 3
+  chill: 0
+  angry: 0
+  goBack: 0
   attackRange: 1
   damage: 10
   attackRate: 1
@@ -1686,6 +1694,42 @@ Transform:
   - {fileID: 2086883931}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &626481160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626481155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63f5b0edcd1afdf4cbdc67b0afc99b97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &626481161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626481155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0223c4527299996419c270ac1de85bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &626481162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626481155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e49e70583c8e5884aa9ec9792c14826a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &626970560
 GameObject:
   m_ObjectHideFlags: 0
@@ -3758,6 +3802,7 @@ GameObject:
   - component: {fileID: 1527129100}
   - component: {fileID: 1527129101}
   - component: {fileID: 1527129102}
+  - component: {fileID: 1527129104}
   - component: {fileID: 1527129103}
   m_Layer: 7
   m_Name: Hero
@@ -3939,10 +3984,23 @@ MonoBehaviour:
   attackRange: 0.5
   attackDamage: 40
   attackRate: 0.5
+  nextAttackTime: 0
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
   attackPoint: {fileID: 1798546401}
+--- !u!114 &1527129104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527129094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff845661909d90458fced3e19655f75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1694393226
 GameObject:
   m_ObjectHideFlags: 0

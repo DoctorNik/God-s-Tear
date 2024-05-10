@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == enemyLayers)
+        if ((enemyLayers & 1 << collision.gameObject.layer) != 0)
         {
             collision.GetComponent<Enemy>().TakeDamage(surekDamage);
             Destroy(gameObject);
