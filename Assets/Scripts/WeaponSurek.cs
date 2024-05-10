@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponSurek : MonoBehaviour
+public class WeaponBullet : MonoBehaviour
 {
     
     public Transform shotpos;
