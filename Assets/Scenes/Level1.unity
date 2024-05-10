@@ -3968,6 +3968,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be21f225902d1934689594952b616434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackIcon: {fileID: 1694393229}
+  meleeAttackIcon: {fileID: 21300000, guid: 9ef4aacb06e950640b1664ac2761e17e, type: 3}
+  rangedAttackIcon: {fileID: 21300000, guid: c86f87eb6fd8aef44895237e035a496b, type: 3}
   isMeleeMode: 1
 --- !u!114 &1527129103
 MonoBehaviour:
