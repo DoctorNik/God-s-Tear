@@ -23,6 +23,7 @@ public class Movement : MonoBehaviour
     {
         if (joystick.Horizontal != 0)
             Move();
+            Rotate();
     }
 
     private void FixedUpdate()
@@ -32,8 +33,20 @@ public class Movement : MonoBehaviour
 
     void Move()
     {
-        Vector3 dir = transform.right * joystick.Horizontal;
+        Vector3 dir = transform.right * Math.Abs(joystick.Horizontal); //Берём модуль т.к. функция Rotate будет разворачивать персонажа, из-за чего в итоге тот будет уметь ходить только в одну сторону
         transform.position = Vector3.MoveTowards(transform.position, transform.position + dir, speed * Time.deltaTime);
+    }
+
+    void Rotate()
+    {
+        if (joystick.Horizontal > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0); // Правая сторона
+        }
+        else if (joystick.Horizontal < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0); // Левая сторона
+        }
     }
 
     public void Jump()
