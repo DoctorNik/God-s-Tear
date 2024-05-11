@@ -11,7 +11,9 @@ public class takeDamage : MonoBehaviour
         if (playerHero.lives < 0)
         Debug.Log("PLayer has taken " + damageAmount);
         {
-             Debug.Log("Player has taken too much damage and DIE");
+            GameManager.instance.GameOver();
         }
     }
+
+    
 } 
