@@ -5,6 +5,11 @@ using UnityEngine;
 public class takeDamage : MonoBehaviour
 {
     Hero playerHero;
+
+    void Start()
+    {
+        playerHero = GetComponent<Hero>();
+    }
     public void TakeDamage(int damageAmount)
     {
         playerHero.lives -= damageAmount;
