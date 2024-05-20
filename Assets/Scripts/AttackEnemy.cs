@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackEnemy : MonoBehaviour
 {
-    takeDamage scriptTakeDamage;
+    public takeDamage  scriptTakeDamage;
     
 
     void Start()
@@ -17,7 +17,7 @@ public class AttackEnemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void AttackPlayer(int dmg)
+    public virtual void AttackPlayer(int dmg)
     {
         scriptTakeDamage.TakeDamage(dmg);
     }

@@ -21,8 +21,8 @@ public class Enemy : MonoBehaviour
     public float attackRange = 0.5f; 
 
     public int damage = 10; 
-    public float attackRate = 0.5f;
-    private float nextAttackTime = 0f;
+    public float attackRate = 0.1f;
+    private float nextAttackTime = 10.5f;
     AttackEnemy scriptAttackEnemy;
 
     // Start is called before the first frame update
