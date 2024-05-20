@@ -27,7 +27,6 @@ public class MoveDogAngry : MonoBehaviour
 
     void Angry()
     {
-        Instantiate(DogData.alertIconPrefab, transform).SetActive(false);
         transform.position = Vector2.MoveTowards(transform.position, DogData.player.position, DogData.speed * Time.deltaTime);
         DogData.speed = 6;
     }
