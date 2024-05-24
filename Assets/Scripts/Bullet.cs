@@ -12,14 +12,20 @@ public class Bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.right * speed;
+        Invoke(nameof(DestroySelf), 5f);
     }
     
+    void DestroySelf()
+    {
+        Destroy(gameObject);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if ((enemyLayers & 1 << collision.gameObject.layer) != 0)
         {
             collision.GetComponent<Enemy>().TakeDamage(surekDamage);
-            Destroy(gameObject);
+            DestroySelf();
         }
     }
 }

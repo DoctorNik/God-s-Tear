@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class takeDamage : MonoBehaviour
 {
-    Hero playerHero;
+    [SerializeField] public int lives = 100;
+
+    void Start()
+    {
+        // Необязательный код инициализации
+    }
+
     public void TakeDamage(int damageAmount)
     {
-        playerHero.lives -= damageAmount;
-        if (playerHero.lives < 0)
-        Debug.Log("PLayer has taken " + damageAmount);
+        lives -= damageAmount;
+        Debug.Log($"Player has taken {damageAmount} damage. Remaining lives: {lives}");
+        if (lives <= 0)
         {
+            Debug.Log("Player has died.");
             GameManager.instance.GameOver();
         }
     }
-
-    
-} 
+}

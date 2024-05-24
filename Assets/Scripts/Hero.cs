@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Hero : MonoBehaviour
 {
-    [SerializeField] public int lives = 100;
+    
     
 }
 

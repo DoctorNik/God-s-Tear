@@ -7,7 +7,6 @@ public class Enemy : MonoBehaviour
 {
     public int lives = 100;
     public float speed;
-
     public int positionOfPatrol;
     public Transform point;
     public bool movingRight;
@@ -22,15 +21,15 @@ public class Enemy : MonoBehaviour
     public float attackRange = 0.5f; 
 
     public int damage = 10; 
-    public float attackRate = 0.5f;
-    private float nextAttackTime = 0f;
-    takeDamage scriptTakeDamage;
+    public float attackRate = 0.1f;
+    private float nextAttackTime = 10.5f;
+    AttackEnemy scriptAttackEnemy;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        scriptTakeDamage = GetComponent<takeDamage>();
+        scriptAttackEnemy = GetComponent<AttackEnemy>();
     }
 
     // Update is called once per frame
@@ -71,7 +70,7 @@ public class Enemy : MonoBehaviour
         {
             if (Vector2.Distance(transform.position, player.position) <= attackRange)
             {
-                AttackPlayer();
+                scriptAttackEnemy.AttackPlayer(damage);
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
@@ -112,10 +111,6 @@ public class Enemy : MonoBehaviour
         speed = 3;
     }
 */
-    void AttackPlayer()
-    {
-        scriptTakeDamage.TakeDamage(damage);
-    }
 
     public void TakeDamage(int damage)
     {
