@@ -23,7 +23,18 @@ public class MeleeAttack : MonoBehaviour
 
             foreach (Collider2D enemy in enemies)
             {
-                enemy.GetComponent<Enemy>().TakeDamage(playerAttackData.attackDamage);
+                if (enemy.CompareTag("Enemy"))
+                {
+                    enemy.GetComponent<Enemy>().TakeDamage(playerAttackData.attackDamage);
+                }
+                else if (enemy.CompareTag("Thrower"))
+                {
+                    enemy.GetComponent<Thrower>().TakeDamage(playerAttackData.attackDamage);
+                }
+                else if (enemy.CompareTag("Dog"))
+                {
+                    enemy.GetComponent<Dog>().TakeDamage(playerAttackData.attackDamage);
+                }
             }
     }
 }

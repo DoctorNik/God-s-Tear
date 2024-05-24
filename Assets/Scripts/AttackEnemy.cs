@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class AttackEnemy : MonoBehaviour
 {
-    public takeDamage  scriptTakeDamage;
+    [HideInInspector] public takeDamage  scriptTakeDamage;
     
 
-    void Start()
+    public void Start()
     {
         scriptTakeDamage = GetComponent<takeDamage>();
-        if (scriptTakeDamage == null)
-        {
-            Debug.LogError("takeDamage script not found on this GameObject!");
-        }
     }
 
     // Update is called once per frame

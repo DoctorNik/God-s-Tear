@@ -18,11 +18,11 @@ public class Enemy : MonoBehaviour
     public bool angry = false;
     public bool goBack = false;
 
-    public float attackRange = 0.5f; 
+    public float attackRange = 2f; 
 
     public int damage = 10; 
     public float attackRate = 0.1f;
-    private float nextAttackTime = 10.5f;
+    private float nextAttackTime = 1.5f;
     AttackEnemy scriptAttackEnemy;
 
     // Start is called before the first frame update
@@ -115,7 +115,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         lives -= damage;
-
+        Debug.Log("take damage");
         // play hurt animation
 
         if (lives <= 0)

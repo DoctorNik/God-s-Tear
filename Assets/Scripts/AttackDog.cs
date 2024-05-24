@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackDog : AttackEnemy
+public class AttackDog : MonoBehaviour
 {
-    public int dmg = 5;
-    void Start()
+    [HideInInspector] public takeDamage  scriptTakeDamage;
+    
+
+    public void Start()
     {
-        
+        scriptTakeDamage = GetComponent<takeDamage>();
     }
 
     // Update is called once per frame
-    public override void AttackPlayer(int dmg)
+    public virtual void AttackPlayer(int dmg)
     {
         scriptTakeDamage.TakeDamage(dmg);
     }

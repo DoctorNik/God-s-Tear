@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Potion
   - Bullet
+  - Thrower
+  - Dog
+  - Enemy
   layers:
   - Default
   - TransparentFX

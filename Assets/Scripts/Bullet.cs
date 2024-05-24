@@ -24,7 +24,19 @@ public class Bullet : MonoBehaviour
     {
         if ((enemyLayers & 1 << collision.gameObject.layer) != 0)
         {
-            collision.GetComponent<Enemy>().TakeDamage(surekDamage);
+            if (collision.CompareTag("Dog"))
+            {
+                collision.GetComponent<Dog>().TakeDamage(surekDamage);
+            }
+            else if (collision.CompareTag("Thrower"))
+            {
+                collision.GetComponent<Thrower>().TakeDamage(surekDamage);
+            }
+            else if (collision.CompareTag("Enemy"))
+            {
+                collision.GetComponent<Enemy>().TakeDamage(surekDamage);
+            }
+            
             DestroySelf();
         }
     }

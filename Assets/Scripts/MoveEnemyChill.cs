@@ -13,18 +13,21 @@ public class MoveEnemyChill : MonoBehaviour
 
     void Update()
     {
-        if (Vector2.Distance(transform.position, EnemyData.point.position) < EnemyData.positionOfPatrol && EnemyData.angry == false)
+        if (Vector2.Distance(transform.position, EnemyData.point.position) < EnemyData.positionOfPatrol && !EnemyData.angry)
         {
             EnemyData.chill = true;
         }
 
-        if (EnemyData.chill == true)
+        if (EnemyData.chill)
         {
             Chill();
         }
     }
+
     void Chill()
     {
+
+
         if (transform.position.x > EnemyData.point.position.x + EnemyData.positionOfPatrol)
         {
             EnemyData.movingRight = false;
@@ -43,6 +46,5 @@ public class MoveEnemyChill : MonoBehaviour
             transform.position = new Vector2(transform.position.x - EnemyData.speed * Time.deltaTime, transform.position.y);
         }
 
-        EnemyData.speed = 3;
     }
 }
