@@ -131,7 +131,5 @@ public class Enemy : MonoBehaviour
         // disable the enemy
         gameObject.SetActive(false);
         GetComponent<Collider2D>().enabled = false;
-        AudioManager.instance.Play("Victory");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

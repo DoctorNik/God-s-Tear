@@ -4,18 +4,31 @@ using UnityEngine;
 
 public class takeDamage : MonoBehaviour
 {
-    [SerializeField] public int lives = 100;
+    public int maxHealth = 100;
+    public int currentHealth;
+
+    public HealthBar healthBar;
 
     void Start()
     {
-        // Необязательный код инициализации
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(20);
+        }
     }
 
     public void TakeDamage(int damageAmount)
     {
-        lives -= damageAmount;
-        Debug.Log($"Player has taken {damageAmount} damage. Remaining lives: {lives}");
-        if (lives <= 0)
+         currentHealth -= damageAmount;
+        healthBar.SetHealth(currentHealth);
+        Debug.Log($"Player has taken {damageAmount} damage. Remaining lives: {currentHealth}");
+        if (currentHealth <= 0)
         {
             Debug.Log("Player has died.");
             GameManager.instance.GameOver();

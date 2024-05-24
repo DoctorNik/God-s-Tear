@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
+    private HeroAnimControl animator;
     public Joystick joystick;
     public float speed;
     public float jumpForce;
@@ -16,11 +17,13 @@ public class Movement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<HeroAnimControl>();
     }
 
     // Update is called once per frame
     void Update()
     {
+//        if (isGrounded) animator.SetIdle();
         if (joystick.Horizontal != 0)
             Move();
             Rotate();
@@ -33,6 +36,7 @@ public class Movement : MonoBehaviour
 
     void Move()
     {
+       // if (isGrounded) animator.SetWalk();
         Vector3 dir = transform.right * Math.Abs(joystick.Horizontal); //Берём модуль т.к. функция Rotate будет разворачивать персонажа, из-за чего в итоге тот будет уметь ходить только в одну сторону
         transform.position = Vector3.MoveTowards(transform.position, transform.position + dir, speed * Time.deltaTime);
     }
@@ -62,6 +66,10 @@ public class Movement : MonoBehaviour
         Collider2D[] collider = Physics2D.OverlapCircleAll(transform.position, 0.1f);
         isGrounded = collider.Length > 1;
         if (isGrounded)
+        {
             kJump = 0;
+            //animator.SetIdle();
+        }
+        //if (!isGrounded) animator.SetJump();
     }
 }

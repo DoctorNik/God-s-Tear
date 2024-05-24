@@ -7,6 +7,6 @@ public class SceneMusic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AudioManager.instance.Play("Music");
+        MusicManager.instance.Play("Music");
     }
 }
