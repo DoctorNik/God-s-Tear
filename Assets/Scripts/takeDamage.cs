@@ -8,17 +8,17 @@ public class takeDamage : MonoBehaviour
 
     void Start()
     {
-        
+        // Необязательный код инициализации
     }
+
     public void TakeDamage(int damageAmount)
     {
         lives -= damageAmount;
+        Debug.Log($"Player has taken {damageAmount} damage. Remaining lives: {lives}");
         if (lives <= 0)
-        Debug.Log("PLayer has taken " + damageAmount);
         {
+            Debug.Log("Player has died.");
             GameManager.instance.GameOver();
         }
     }
-
-    
-} 
+}

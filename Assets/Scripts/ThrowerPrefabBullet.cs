@@ -6,12 +6,10 @@ public class Projectile : MonoBehaviour
 {
     public int damage = 10;
     public LayerMask playerLayer;
-    takeDamage scriptTakeDamage;
 
     void Start()
     {
         Invoke(nameof(DestroySelf), 5f);
-        scriptTakeDamage = GetComponent<takeDamage>();
     }
 
     void DestroySelf()
@@ -21,16 +19,26 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Проверяем, если слой объекта столкновения входит в enemyLayers
-        if ((playerLayer & (1 << collision.gameObject.layer)) != 0)
+        Debug.Log($"Collision with {collision.gameObject.name} on layer {collision.gameObject.layer}");
+        if ((playerLayer.value & (1 << collision.gameObject.layer)) != 0)
         {
-            Hero player = collision.gameObject.GetComponent<Hero>();
+            Debug.Log("Collided with player layer.");
+            takeDamage player = collision.gameObject.GetComponent<takeDamage>();
             if (player != null)
             {
-                scriptTakeDamage.TakeDamage(damage);
+                Debug.Log("takeDamage component found. Inflicting damage.");
+                player.TakeDamage(damage);
                 DestroySelf();
-                Debug.Log("хлеб коснулся");
+                Debug.Log("Projectile destroyed after collision with player.");
             }
+            else
+            {
+                Debug.Log("takeDamage component not found on collided object.");
+            }
+        }
+        else
+        {
+            Debug.Log("Collided object is not on the player layer.");
         }
     }
 }

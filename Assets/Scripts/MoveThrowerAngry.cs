@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class MoveThrowerAngry : MonoBehaviour
 {
-
     Thrower ThrowerData;
     public GameObject projectilePrefab; // Префаб объекта, который будет бросаться
     public Transform throwPoint; // Точка, из которой будет бросаться объект
-    public float throwForce = 10f; // Сила броска
+    public float minThrowForce = 5f; // Минимальная сила броска
+    public float maxThrowForce = 15f; // Максимальная сила броска
     public float attackCooldown = 2f; // Время между атаками
     private float lastAttackTime;
-
     public float approachDistance = 2f; // Расстояние, на которое враг подходит к игроку
 
     void Start()
@@ -31,13 +29,12 @@ public class MoveThrowerAngry : MonoBehaviour
 
         if (ThrowerData.angry)
         {
-            Angry();
+            Angry(distanceToPlayer);
         }
     }
 
-    void Angry()
+    void Angry(float distanceToPlayer)
     {
-        float distanceToPlayer = Vector2.Distance(transform.position, ThrowerData.player.position);
         if (distanceToPlayer > approachDistance)
         {
             // Подходим к игроку
@@ -48,7 +45,9 @@ public class MoveThrowerAngry : MonoBehaviour
             // Останавливаемся и атакуем
             if (Time.time > lastAttackTime + attackCooldown)
             {
-                ThrowProjectile();
+                float normalizedDistance = Mathf.Clamp01(distanceToPlayer / approachDistance); // Нормализуем расстояние до игрока
+                float throwForce = Mathf.Lerp(minThrowForce, maxThrowForce, normalizedDistance); // Интерполируем между максимальной и минимальной силой броска
+                ThrowProjectile(throwForce);
                 lastAttackTime = Time.time;
             }
         }
@@ -67,9 +66,9 @@ public class MoveThrowerAngry : MonoBehaviour
         ThrowerData.speed = 4;
     }
 
-    void ThrowProjectile()
+    void ThrowProjectile(float throwForce)
     {
-        // Создаем префаб объекта и бросаем его по параболической траектории
+        // Создаем префаб объекта и бросаем его с учетом расчитанной силы
         GameObject projectile = Instantiate(projectilePrefab, throwPoint.position, Quaternion.identity);
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         if (rb != null)
@@ -87,5 +86,4 @@ public class MoveThrowerAngry : MonoBehaviour
         Vector2 velocity = new Vector2(direction.x * Mathf.Cos(angleRad), Mathf.Sin(angleRad)) * force;
         return velocity;
     }
-
 }
