@@ -1,14 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public GameObject player; // Ссылка на игрока
-    public GameObject afterDeathMenu; // Ссылка на UI-элемент, который должен появиться после смерти
-    public GameObject afterVictoryMenu; // Ссылка на UI-элемент, который должен появиться после постижения победного условия
-
     void Awake ()
 	{
 		if (instance != null)
@@ -24,11 +21,24 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        afterDeathMenu.SetActive(true);
+		Time.timeScale = 0f;
+        UIManager.Instance.ShowGameOverMenu();
     }
 
     public void Victory()
     {
-        afterVictoryMenu.SetActive(true);
+		Time.timeScale = 0f;
+        UIManager.Instance.ShowVictoryMenu();
     }
+
+	public void NextLevel()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+	}
+	
+	public void ToMenu()
+	{
+		SceneManager.LoadScene(0);
+	}
+
 }
